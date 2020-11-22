@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
+#include <ctype.h>
 
 void decrypted(char *path, int key){
-    char** mat=read_file(path);
+ 
 
 
 }
@@ -67,5 +68,16 @@ char** read_file(char *path) {
 
 char** decrypted_mat(char** matrix, int key) {
     int i, j;
- 
+    for (i = 0; i < strlen(matrix)-1; i++) {
+        for (j = 0; j < strlen(matrix[i])-1; j++) {
+            if (isdigit(matrix[i][j]))
+                matrix[i][j] = ('0' + (matrix[i][j] - '0' - key) % 10);
+            if (isalpha(matrix[i][j])) 
+                if (isupper(matrix[i][j]))
+                    matrix[i][j] = ('A' + (matrix[i][j] - 'A' - key) % 26);
+                else
+                    matrix[i][j] = ('a' + (matrix[i][j] - 'a' - key) % 26);
+        }
+    }
+    return matrix;
 }
