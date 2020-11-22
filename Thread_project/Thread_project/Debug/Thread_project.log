@@ -1,0 +1,6 @@
+﻿  decrypted.c
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(15,17): warning C4098: 'open_file': 'void' function returning a value
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(38,64): warning C4047: '=': 'char **' differs in levels of indirection from 'char *'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(60,18): warning C4047: 'function': 'const char *const ' differs in levels of indirection from 'char **'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(60,12): warning C4024: 'printf': different types for formal and actual parameter 1
+  Thread_project.vcxproj -> C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Debug\Thread_project.exe
