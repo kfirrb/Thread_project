@@ -1,6 +1,6 @@
 #include "decrypted.h"
 
 int main(){
-	read_file("C:/Users/KfirRabinovitch/Documents/GitHub/Thread_project/Thread_project/Thread_project/test.txt");
+	decrypted("C:/Users/KfirRabinovitch/Documents/GitHub/Thread_project/Thread_project/Thread_project/test.txt", 3);
 	return 0;
 }

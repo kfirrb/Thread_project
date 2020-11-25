@@ -1,10 +1,12 @@
 ﻿  decrypted.c
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(18,17): warning C4047: 'return': 'char **' differs in levels of indirection from 'int'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(41,64): warning C4047: '=': 'char **' differs in levels of indirection from 'char *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(63,18): warning C4047: 'function': 'const char *const ' differs in levels of indirection from 'char **'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(63,12): warning C4024: 'printf': different types for formal and actual parameter 1
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(71,34): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char **'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(71,28): warning C4024: 'strlen': different types for formal and actual parameter 1
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(71,19): warning C4018: '<': signed/unsigned mismatch
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(72,23): warning C4018: '<': signed/unsigned mismatch
-  Thread_project.vcxproj -> C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Debug\Thread_project.exe
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(25,42): warning C4013: 'open_file' undefined; assuming extern returning int
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(25,89): warning C4047: '=': 'FILE *' differs in levels of indirection from 'int'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(28,93): warning C4047: '=': 'FILE *' differs in levels of indirection from 'int'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(31,25): warning C4013: 'read_line' undefined; assuming extern returning int
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(31,46): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(32,29): warning C4013: 'decrypte_line' undefined; assuming extern returning int
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(32,40): warning C4047: '=': 'char *' differs in levels of indirection from 'int'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(33,42): warning C4013: 'write_new_line_to_output' undefined; assuming extern returning int
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(37,19): warning C4013: 'close_file' undefined; assuming extern returning int
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(79,19): warning C4018: '<': signed/unsigned mismatch
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(104,7): error C2040: 'open_file': 'FILE *(FILE *,char *,char *)' differs in levels of indirection from 'int ()'
