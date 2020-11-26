@@ -1,38 +1,11 @@
-﻿  main.c
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(86,19): warning C4018: '<': signed/unsigned mismatch
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(19,114): warning C4098: 'handle_thread': 'void' function returning a value
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,36): warning C4133: 'function': incompatible types - from 'FILE *' to 'char *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,51): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,44): warning C4024: 'count_end_line': different types for formal and actual parameter 3
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,52): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(31,1): warning C4047: 'initializing': 'int *' differs in levels of indirection from 'int'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(55,23): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(55,51): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
-  thread.c
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\decrypted.c(86,19): warning C4018: '<': signed/unsigned mismatch
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(19,114): warning C4098: 'handle_thread': 'void' function returning a value
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,36): warning C4133: 'function': incompatible types - from 'FILE *' to 'char *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,51): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,44): warning C4024: 'count_end_line': different types for formal and actual parameter 3
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,52): warning C4047: '=': 'int' differs in levels of indirection from 'int *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(31,1): warning C4047: 'initializing': 'int *' differs in levels of indirection from 'int'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(55,23): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(55,51): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
-  Generating Code...
-  LINK : C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Debug\Thread_project.exe not found or not built by the last incremental link; performing full link
-main.obj : error LNK2005: _close_file already defined in decrypted.obj
-main.obj : error LNK2005: _decrypted already defined in decrypted.obj
-main.obj : error LNK2005: _decrypted_line already defined in decrypted.obj
-main.obj : error LNK2005: _open_file already defined in decrypted.obj
-main.obj : error LNK2005: _read_line already defined in decrypted.obj
-main.obj : error LNK2005: _write_line already defined in decrypted.obj
-thread.obj : error LNK2005: _close_file already defined in decrypted.obj
-thread.obj : error LNK2005: _count_end_line already defined in main.obj
-thread.obj : error LNK2005: _decrypted already defined in decrypted.obj
-thread.obj : error LNK2005: _decrypted_line already defined in decrypted.obj
-thread.obj : error LNK2005: _end_lines already defined in main.obj
-thread.obj : error LNK2005: _handle_thread already defined in main.obj
-thread.obj : error LNK2005: _open_file already defined in decrypted.obj
-thread.obj : error LNK2005: _read_line already defined in decrypted.obj
-thread.obj : error LNK2005: _write_line already defined in decrypted.obj
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Debug\Thread_project.exe : fatal error LNK1169: one or more multiply defined symbols found
+﻿  thread.c
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(14,36): warning C4133: 'function': incompatible types - from 'FILE *' to 'char *'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(14,51): warning C4047: 'function': 'int *' differs in levels of indirection from 'int'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(14,44): warning C4024: 'count_end_line': different types for formal and actual parameter 3
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(12,1): warning C4047: 'initializing': 'int *' differs in levels of indirection from 'int'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(33,20): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(36,23): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(36,51): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(41,28): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\thread.c(52,19): warning C4047: 'return': 'int' differs in levels of indirection from 'int *'
+  Thread_project.vcxproj -> C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Debug\Thread_project.exe

@@ -1,14 +1,23 @@
-#include "decrypted.h"
-#include "thread.c"
+
 #include "threads_manager.h"
 
 int main(int argc, char* argv[]){
-	open_file();
-	open_file();
-	end_lines();
-	threads_manager();
-	int i = 0;
-	i=decrypted("C:/Users/KfirRabinovitch/Documents/GitHub/Thread_project/Thread_project/Thread_project/test.txt", 3);
-	handle_thread("C:/Users/KfirRabinovitch/Documents/GitHub/Thread_project/Thread_project/Thread_project/test.txt");
+	int* array;
+	FILE* p_input_file = NULL;
+	char* in_file_name = argv[1];
+	char* in_file_open_type = "r";
+
+	FILE* p_output_file = NULL;
+	char* out_file_name = "output.txt";
+	char* out_file_open_type = "w";
+
+	if (NULL == (p_input_file = open_file(p_input_file, in_file_name, in_file_open_type))) return ERROR_CODE_FILE;
+	if (NULL == (p_output_file = open_file(p_output_file, out_file_name, out_file_open_type))) return ERROR_CODE_FILE;
+
+	array = end_lines(p_input_file);
+	threads_manager(p_input_file,p_output_file,array,argv[2],argv[3]);
+
+	if (close_file(p_input_file, in_file_name) == STATUS_CODE_FAILURE) return ERROR_CODE_FILE;
+	if (close_file(p_output_file, out_file_name) == STATUS_CODE_FAILURE) return ERROR_CODE_FILE;
 	return 0;
 }

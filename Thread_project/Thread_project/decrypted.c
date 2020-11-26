@@ -1,54 +1,21 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <string.h>
-#include <ctype.h>
+#include "decrypted.h"
 
-#define STATUS_CODE_FAILURE -2 
-#define SUCCESS_CODE 0 
-#define INITIAL_SIZE 10
-#define ERROR_CODE_FILE -3
-
-char* read_line(FILE* file, int* flag);
-int decrypted(char* path, int key);
-char* decrypted_line(char* line, int key);
-int close_file(FILE* file, char* file_name);
-FILE* open_file(FILE* file, char* file_name, char* file_open_type);
-int write_line(FILE* output_file, char* line);
-
-int decrypted(char *path, int key){
-    // check that argv2 is int
-    int flag;
-    char* line = NULL;
-
-    FILE* p_input_file = NULL;
-    char* in_file_name = path;
-    char* in_file_open_type = "r";
-
-    FILE* p_output_file = NULL;
-    char* out_file_name = "output.txt";
-    char* out_file_open_type = "w";
-
-    if (NULL == (p_input_file = open_file(p_input_file, in_file_name, in_file_open_type))) return ERROR_CODE_FILE;
-
-    // Open file with check
-    if (NULL == (p_output_file = open_file(p_output_file, out_file_name, out_file_open_type))) return ERROR_CODE_FILE;
-    flag = 1;
-    while (flag) {
+int decrypted(FILE *p_input_file,FILE* p_output_file ,int start, int end, int key){
+    int CUR_MAX_ROW = 10;
+    char* line;
+    if (NULL == (line = (char*)malloc(sizeof(char) * CUR_MAX_ROW))) { //check if allocate complketed
+        printf("Memomry allocation failed\n");
+        return NULL;
+    }
+    int flag = 1;
+    while (flag && start<=end) {
         line = read_line(p_input_file, &flag);
+        start += strlen(line);
         line = decrypted_line(line, key);
         if (0 != write_line(p_output_file, line)) return STATUS_CODE_FAILURE;
     }
-
-    // Close file with check
-    if (close_file(p_input_file, in_file_name) == STATUS_CODE_FAILURE) return ERROR_CODE_FILE;
-
-    // Close file with check
-    if (close_file(p_output_file, out_file_name) == STATUS_CODE_FAILURE) return ERROR_CODE_FILE;
-
     return 0;
 }
-
 
 char* read_line(FILE* file,int *flag) {
     char ch;
