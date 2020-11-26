@@ -141,9 +141,13 @@
   <ItemGroup>
     <ClCompile Include="decrypted.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="threads_manager.c" />
+    <ClCompile Include="thread.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="decrypted.h" />
+    <ClInclude Include="thread.h" />
+    <ClInclude Include="threads_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

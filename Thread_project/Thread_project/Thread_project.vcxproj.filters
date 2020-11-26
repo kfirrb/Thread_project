@@ -21,9 +21,21 @@
     <ClCompile Include="decrypted.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="thread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="threads_manager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="decrypted.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="thread.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="threads_manager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

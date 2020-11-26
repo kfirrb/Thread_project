@@ -9,6 +9,13 @@
 #define INITIAL_SIZE 10
 #define ERROR_CODE_FILE -3
 
+char* read_line(FILE* file, int* flag);
+int decrypted(char* path, int key);
+char* decrypted_line(char* line, int key);
+int close_file(FILE* file, char* file_name);
+FILE* open_file(FILE* file, char* file_name, char* file_open_type);
+int write_line(FILE* output_file, char* line);
+
 int decrypted(char *path, int key){
     // check that argv2 is int
     int flag;
@@ -29,8 +36,8 @@ int decrypted(char *path, int key){
     flag = 1;
     while (flag) {
         line = read_line(p_input_file, &flag);
-        line = decrypte_line(line, key);
-        if (0 != write_new_line_to_output(p_output_file, line)) return STATUS_CODE_FAILURE;
+        line = decrypted_line(line, key);
+        if (0 != write_line(p_output_file, line)) return STATUS_CODE_FAILURE;
     }
 
     // Close file with check
@@ -43,9 +50,9 @@ int decrypted(char *path, int key){
 }
 
 
-char* read_file(FILE* file,int *flag) {
+char* read_line(FILE* file,int *flag) {
     char ch;
-    int i;
+    int i=0;
     int CUR_MAX_ROW = INITIAL_SIZE;
     char* buffer;
 
