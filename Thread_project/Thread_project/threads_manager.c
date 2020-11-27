@@ -73,11 +73,11 @@ void wait_until_signal(HANDLE hThread, P_threads_arg threads_arg) {
 		free_thread(hThread, threads_arg);
 		break;
 	}
-	case (WAIT_TIMEOUT): {
+	case (WAIT_FAILED): {
 		free_thread(hThread, threads_arg);
 		return ERROR_CODE_FILE;
 	}
-	case (WAIT_FAILED): {
+	case (WAIT_TIMEOUT): {
 		free_thread(hThread, threads_arg);
 		return ERROR_CODE_FILE;
 	}

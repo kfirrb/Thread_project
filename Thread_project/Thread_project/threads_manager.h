@@ -1,4 +1,7 @@
-#pragma once
+#pragma 
+
+// Includes --------------------------------------------------------------------
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -13,6 +16,8 @@
 #define SUCCESS_CODE 0 
 #define INITIAL_SIZE 10
 #define ERROR_CODE_FILE -3
+
+// Types -----------------------------------------------------------------------
 
 typedef struct threads_arg {
 	FILE* input;

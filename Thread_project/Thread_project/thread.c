@@ -1,4 +1,20 @@
+// LastErrorDemonstration.c
+
+/*
+* This program serves as a demonstration on when and how to get the
+* Last Error Code Value.
+*
+* The last error code is a thread local variable in kernel space.
+* Some WINAPI functions write to this variable as a method of passing
+* extended error information to the calling thread.
+* Consult the recitation slides for additional information.
+*/
+
+// Includes --------------------------------------------------------------------
+
 #include "thread.h"
+
+// Function Declarations -------------------------------------------------------
 
 int *end_lines(FILE *fp) {
     int* line=NULL;
