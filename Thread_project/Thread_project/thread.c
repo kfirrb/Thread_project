@@ -13,7 +13,7 @@ int *end_lines(FILE *fp) {
     for (ch = fgetc(fp); ch != EOF; ch = fgetc(fp)) {
         counter++;
         if (i == maximum - 1){
-            if (NULL == (line = (int*)realloc(line, (maximum+2) * sizeof(int)))) {
+            if (NULL == (line = (int*)realloc(line, (maximum++) * sizeof(int)))) {
                 printf("Memomry allocation failed\n");
                 return NULL;
             }
@@ -24,7 +24,7 @@ int *end_lines(FILE *fp) {
         }
     }
     line[i] = counter;
-    i++;
+    i+=1;
     line[i] = '\0';
     return line;
 }

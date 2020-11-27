@@ -14,10 +14,12 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads) {
 			return ERROR_CODE_FILE;
 		num_rows_read = ceil(rows_remain / threads);
 		start = array[i] + 1;
-		if (i == 0)
-			start = 0;
 		end = array[i + num_rows_read];
-		i = num_rows_read;
+		if (i == 0) {
+			start = 0;
+			end = array[i + num_rows_read - 1];
+		}
+		i += num_rows_read-1;
 		threads_arg->input = read;
 		threads_arg->output = write;
 		threads_arg->start = start;
@@ -37,8 +39,9 @@ DWORD WINAPI handle_thread(LPVOID lpParam) {
 	P_threads_arg  th_arg;
 	th_arg = (P_threads_arg)lpParam;
 	int status = 0;
-	if ((fseek(th_arg->input, (sizeof(char) * th_arg->start), SEEK_SET)) != 0)
-		return ERROR_CODE_FILE;
+	if (th_arg->start==0)
+		if ((fseek(th_arg->input, (sizeof(char) * th_arg->start), SEEK_SET)) != 0)
+			return ERROR_CODE_FILE;
 	status = decrypted(th_arg->input, th_arg->output, th_arg->start, th_arg->end, th_arg->key);
 	return status;
 }

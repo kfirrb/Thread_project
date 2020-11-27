@@ -1,6 +1,6 @@
 #include "decrypted.h"
 
-int decrypted(FILE *p_input_file,FILE* p_output_file ,int start, int end, int key){
+int decrypted(FILE* p_input_file, FILE* p_output_file, int start, int end, int key) {
     int CUR_MAX_ROW = 10;
     char* line;
     if (NULL == (line = (char*)malloc(sizeof(char) * CUR_MAX_ROW))) { //check if allocate complketed
@@ -8,14 +8,21 @@ int decrypted(FILE *p_input_file,FILE* p_output_file ,int start, int end, int ke
         return NULL;
     }
     int flag = 1;
-    while (flag && start<end) {
+    while ((start<end) && flag) {
         line = read_line(p_input_file, &flag);
+        if (flag == 0) {
+            if (NULL == (line = (char*)realloc(line, strlen(line) + 1))) {
+                printf("Memomry allocation failed\n");
+                return NULL; // re allocate memory.
+            }
+            line[-1] = EOF;
+        }
         start += strlen(line);
         line = decrypted_line(line, key);
         if (0 != write_line(p_output_file, line)) return STATUS_CODE_FAILURE;
     }
     return 0;
-}
+    }
 
 char* read_line(FILE* file,int *flag) {
     char ch;
