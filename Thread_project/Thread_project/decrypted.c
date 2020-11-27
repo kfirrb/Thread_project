@@ -8,7 +8,7 @@ int decrypted(FILE *p_input_file,FILE* p_output_file ,int start, int end, int ke
         return NULL;
     }
     int flag = 1;
-    while (flag && start<=end) {
+    while (flag && start<end) {
         line = read_line(p_input_file, &flag);
         start += strlen(line);
         line = decrypted_line(line, key);
@@ -44,7 +44,6 @@ char* read_line(FILE* file,int *flag) {
     }
     buffer[i++] = '\n';
     buffer[i++] = '\0';
-    //close_file(file);
     return buffer;
 }
 

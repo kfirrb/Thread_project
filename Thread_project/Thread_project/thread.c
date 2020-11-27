@@ -6,48 +6,25 @@ int *end_lines(FILE *fp) {
         printf("Memomry allocation failed\n");
         return NULL;
     }
+    char ch;
     int counter = 0;
     int maximum = 1;
     int i = 0;
-    int* flag = 1;
-    while (flag) {
-        counter = count_end_line(fp, flag, counter);
-        line[i] = counter;
-        if (NULL == (line = (int*)realloc(line,maximum))) {
-            printf("Memomry allocation failed\n");
-            return NULL; // re allocate memory.
-        }
-        i++;
-    }
-    return line;
-}
-
-int count_end_line(char* fp,int *flag, int* counter) {
-    char ch;
-    int i=0;
-    int CUR_MAX_ROW = INITIAL_SIZE;
-    char* buffer;
-
-    if (NULL == (buffer = (char*)malloc(sizeof(char) * CUR_MAX_ROW))) { //check if allocate complketed
-        printf("Memomry allocation failed\n");
-        return NULL;
-    }
-
-    for (ch = fgetc(fp); ch != '\n'; ch = fgetc(fp)) {
-        if (i == CUR_MAX_ROW - 1) {
-            CUR_MAX_ROW += 10; // expand to double the current size of anything similar.
-            if (NULL == (buffer = (char*)realloc(buffer, CUR_MAX_ROW))) {
+    for (ch = fgetc(fp); ch != EOF; ch = fgetc(fp)) {
+        counter++;
+        if (i == maximum - 1){
+            if (NULL == (line = (int*)realloc(line, (maximum+2) * sizeof(int)))) {
                 printf("Memomry allocation failed\n");
-                return NULL; // re allocate memory.
+                return NULL;
             }
         }
-        if (ch == EOF) {
-            flag = 0;
-            break;
+        if (ch == '\n') {
+            line[i] = counter;
+            i++;
         }
-        counter+=1;
-        i++;
     }
-    counter+=1;
-    return counter;
+    line[i] = counter;
+    i++;
+    line[i] = '\0';
+    return line;
 }

@@ -9,4 +9,3 @@
 #define INITIAL_SIZE 10
 
 int* end_lines(FILE* fp);
-int count_end_line(char* fp, int* flag, int* counter);
