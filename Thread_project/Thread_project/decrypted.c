@@ -1,6 +1,6 @@
 #include "decrypted.h"
 
-int decrypted(FILE* p_input_file, FILE* p_output_file, int start, int end, int key) {
+int decrypted(FILE* p_input_file, FILE* p_output_file, int start, int end, int key, char mode) {
     int CUR_MAX_ROW = 10;
     char* line;
     if (NULL == (line = (char*)malloc(sizeof(char) * CUR_MAX_ROW))) { //check if allocate complketed
@@ -18,7 +18,7 @@ int decrypted(FILE* p_input_file, FILE* p_output_file, int start, int end, int k
             line[-1] = EOF;
         }
         start += strlen(line);
-        line = decrypted_line(line, key);
+        line = decrypted_line(line, key, mode);
         if (0 != write_line(p_output_file, line)) return STATUS_CODE_FAILURE;
     }
     return 0;
@@ -54,17 +54,29 @@ char* read_line(FILE* file,int *flag) {
     return buffer;
 }
 
-char* decrypted_line(char* line, int key) {
+char* decrypted_line(char* line, int key, char mode) {
     int i;
+    char sign;
+    if (mode == 'd')
+        sign = 1;
+    else
+        sign = -1;
+    key *= sign;
     for (i = 0; i < strlen(line)-1; i++) {
         if (isdigit(line[i]))
             line[i] = ('0' + (line[i] - '0' - key) % 10);
-        if (isalpha(line[i])) 
-            if (isupper(line[i]))
-                line[i] = ('A' + (line[i] - 'A' - key) % 26);
-            else
-                line[i] = ('a' + (line[i] - 'a' - key) % 26);
-        
+        if (isalpha(line[i])) {
+            if (isupper(line[i])) {
+                if ((line[i] - 'A' - key) < 0)
+                    line[i] += 26;
+                line[i] = 'A' + (line[i] - 'A' - key) % 26;
+            }
+            else{
+                if ((line[i] - 'a' - key) < 0)
+                    line[i] += 26;
+                line[i] = 'a' + (line[i] - 'a' - key) % 26;
+            }
+        }
     }
     return line;
 }

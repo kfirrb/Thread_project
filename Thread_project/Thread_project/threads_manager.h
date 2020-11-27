@@ -20,9 +20,10 @@ typedef struct threads_arg {
 	int start;
 	int end;
 	int key;
+	char mode;
 }threads_arg, * P_threads_arg;
 
-int threads_manager(FILE* read, FILE* write, int* array, int key, int threads);
+int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,char mode);
 DWORD WINAPI handle_thread(LPVOID lpParam);
 void free_thread(HANDLE hthread, P_threads_arg threads_arg);
 int counter_line(int* array);

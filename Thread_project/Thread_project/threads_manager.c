@@ -1,6 +1,6 @@
 #include "threads_manager.h"
 
-int threads_manager(FILE* read, FILE* write, int* array, int key, int threads) {
+int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,char mode) {
 	DWORD   dwThread;
 	HANDLE h_th;
 	P_threads_arg threads_arg;
@@ -25,6 +25,7 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads) {
 		threads_arg->start = start;
 		threads_arg->end = end;
 		threads_arg->key = key;
+		threads_arg->mode = mode;
 		h_th = CreateThread(NULL, 0, handle_thread, threads_arg, 0, &dwThread);
 		if (h_th == NULL)
 			return ERROR_CODE_FILE;
@@ -42,7 +43,7 @@ DWORD WINAPI handle_thread(LPVOID lpParam) {
 	if (th_arg->start==0)
 		if ((fseek(th_arg->input, (sizeof(char) * th_arg->start), SEEK_SET)) != 0)
 			return ERROR_CODE_FILE;
-	status = decrypted(th_arg->input, th_arg->output, th_arg->start, th_arg->end, th_arg->key);
+	status = decrypted(th_arg->input, th_arg->output, th_arg->start, th_arg->end, th_arg->key, th_arg->mode);
 	return status;
 }
 
