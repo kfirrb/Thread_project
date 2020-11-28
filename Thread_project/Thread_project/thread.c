@@ -23,6 +23,7 @@ int *end_lines(FILE *fp) {
         return NULL;
     }
     char ch;
+    int empty_file = 1;
     int counter = 0;
     int maximum = 1;
     int i = 0;
@@ -38,6 +39,10 @@ int *end_lines(FILE *fp) {
             line[i] = counter;
             i++;
         }
+        empty_file = 0;
+    }
+    if (empty_file) {
+        printf("Input file is empty\n");
     }
     line[i] = counter;
     i+=1;

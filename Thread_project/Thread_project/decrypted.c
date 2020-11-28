@@ -49,7 +49,9 @@ char* read_line(FILE* file,int *flag) {
         }
         buffer[i++] = ch;
     }
-    buffer[i++] = '\n';
+    if (*flag) {
+        buffer[i++] = '\n';
+    }
     buffer[i++] = '\0';
     return buffer;
 }
