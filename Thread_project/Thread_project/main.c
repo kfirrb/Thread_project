@@ -59,8 +59,10 @@ int main(int argc, char* argv[]){
         return ERROR_CODE_FILE;
 
 	array = end_lines(fp_input_file);
-	threads_manager(fp_input_file,fp_output_file,array,key,threads,mode);
-    free(array);
+    if (array != NULL) {
+        threads_manager(fp_input_file, fp_output_file, array, key, threads, mode);
+        free(array);
+    }
 
 	if (close_file(fp_input_file, in_file_name) == STATUS_CODE_FAILURE)
         return ERROR_CODE_FILE;

@@ -40,8 +40,9 @@ int *end_lines(FILE *fp) {
     }
     if (empty_file) {
         printf("Input file is empty\n");
+        return NULL;
     }
     line[i] = counter;
-    line[i + 1] = 20843;
+    line[i + 1] = -1;
     return line;
 }

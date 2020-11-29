@@ -14,7 +14,7 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,ch
 	DWORD   dwThread;
 	HANDLE h_th;
 	P_threads_arg threads_arg;
-	double rows_remain = counter_line(array);
+	float rows_remain = (float)counter_line(array);
 	int end, start, i = 0;
 	int num_rows_read;
 	while (threads != 0) {
@@ -22,20 +22,25 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,ch
 			sizeof(threads_arg));
 		if (threads_arg == NULL)
 			return ERROR_CODE_FILE;
-		num_rows_read = ceil((double)rows_remain / threads);
-		start = array[i] + 1;
-		end = array[i + num_rows_read];
-		if (i == 0) {
-			start = 0;
-			end = array[i + num_rows_read - 1];
+		num_rows_read = ceil(rows_remain / threads);
+		if (rows_remain <= 0) {//open thread but because end=start dont do nothing
+			start = 1;
+			end = 1;
 		}
-		i += num_rows_read-1;
-		threads_arg->start = start;
+		else {
+			if (i == 0)
+				start = 0;
+			else
+				start = array[i - 1] + 1;
+			i += num_rows_read;
+			end = array[i - 1];
+		}
 		threads_arg->input = read;
 		threads_arg->output = write;
 		threads_arg->end = end;
 		threads_arg->key = key;
 		threads_arg->mode = mode;
+		threads_arg->start = start;
 		h_th = CreateThread(NULL, 0, handle_thread, threads_arg, 0, &dwThread);
 		if (h_th == NULL)
 			return ERROR_CODE_FILE;
@@ -59,15 +64,15 @@ DWORD WINAPI handle_thread(LPVOID lpParam) {
 
 void free_thread(HANDLE hthread, P_threads_arg threads_arg) {
 	CloseHandle(hthread);
-	/*if (threads_arg != NULL) {
+	if (threads_arg != NULL) {
 		HeapFree(GetProcessHeap(), 0, threads_arg);
 		threads_arg = NULL;
-	}*/
+	}
 }
 
 int counter_line(int* array) {
 	int i = 0;
-	while (*(array + i) != 20843) {
+	while (*(array + i) != -1) {
 		i++;
 	}
 	return i;

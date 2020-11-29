@@ -1,7 +1,4 @@
-﻿  decrypted.c
-  main.c
-  thread.c
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Ceaser.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   threads_manager.c
-C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\threads_manager.c(25,54): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
+C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Thread_project\threads_manager.c(25,46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   Thread_project.vcxproj -> C:\Users\KfirRabinovitch\Documents\GitHub\Thread_project\Thread_project\Debug\Thread_project.exe
