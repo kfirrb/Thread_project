@@ -1,10 +1,20 @@
+/*
+threads_manager.c
+--------------------------------------------------------------------------------------------------
+Description- this module responsible to create of all threds and thier functionality
+*/
+
+// includes -------------------------------------------------------
+
 #include "threads_manager.h"
+
+// Function---------------------------------------------------------
 
 int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,char mode) {
 	DWORD   dwThread;
 	HANDLE h_th;
 	P_threads_arg threads_arg;
-	float rows_remain = counter_line(array);
+	double rows_remain = counter_line(array);
 	int end, start, i = 0;
 	int num_rows_read;
 	while (threads != 0) {
@@ -12,7 +22,7 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,ch
 			sizeof(threads_arg));
 		if (threads_arg == NULL)
 			return ERROR_CODE_FILE;
-		num_rows_read = ceil(rows_remain / threads);
+		num_rows_read = ceil((double)rows_remain / threads);
 		start = array[i] + 1;
 		end = array[i + num_rows_read];
 		if (i == 0) {
@@ -20,9 +30,9 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,ch
 			end = array[i + num_rows_read - 1];
 		}
 		i += num_rows_read-1;
+		threads_arg->start = start;
 		threads_arg->input = read;
 		threads_arg->output = write;
-		threads_arg->start = start;
 		threads_arg->end = end;
 		threads_arg->key = key;
 		threads_arg->mode = mode;
@@ -51,35 +61,29 @@ void free_thread(HANDLE hthread, P_threads_arg threads_arg) {
 	CloseHandle(hthread);
 	/*if (threads_arg != NULL) {
 		HeapFree(GetProcessHeap(), 0, threads_arg);
+		threads_arg = NULL;
 	}*/
 }
 
 int counter_line(int* array) {
 	int i = 0;
-	while (*(array + i) != '\0') {
+	while (*(array + i) != 20843) {
 		i++;
 	}
 	return i;
 }
 
 void wait_until_signal(HANDLE hThread, P_threads_arg threads_arg) {
-	DWORD waitFreeObject = WaitForSingleObject(hThread, threads_arg);
-	switch (waitFreeObject) {
-	case (WAIT_ABANDONED): {
-		free_thread(hThread, threads_arg);
-		return ERROR_CODE_FILE;
+	DWORD waitFreeObject = WaitForSingleObject(hThread, 20000);
+	free_thread(hThread, threads_arg);
+	if (0 != waitFreeObject) {
+		error_handler(waitFreeObject);
 	}
-	case (WAIT_OBJECT_0): {
-		free_thread(hThread, threads_arg);
-		break;
-	}
-	case (WAIT_FAILED): {
-		free_thread(hThread, threads_arg);
-		return ERROR_CODE_FILE;
-	}
-	case (WAIT_TIMEOUT): {
-		free_thread(hThread, threads_arg);
-		return ERROR_CODE_FILE;
-	}
-	}
+}
+
+void error_handler(int err_code) {
+
+	printf("-------ERROR--------\n");
+	printf("Error num %d", err_code);
+	exit(err_code);
 }

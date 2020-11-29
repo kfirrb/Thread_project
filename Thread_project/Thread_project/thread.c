@@ -1,39 +1,36 @@
-// LastErrorDemonstration.c
-
 /*
-* This program serves as a demonstration on when and how to get the
-* Last Error Code Value.
-*
-* The last error code is a thread local variable in kernel space.
-* Some WINAPI functions write to this variable as a method of passing
-* extended error information to the calling thread.
-* Consult the recitation slides for additional information.
+threads.c
+--------------------------------------------------------------------------------------------------
+Description- this module responsible on couning the end of each line.
 */
-
-// Includes --------------------------------------------------------------------
+// Includes ---------------------------------------------------------------------------------------
 
 #include "thread.h"
 
-// Function Declarations -------------------------------------------------------
+// Function ---------------------------------------------------------------------------------------
 
 int *end_lines(FILE *fp) {
+    int maximum = 1;
     int* line=NULL;
-    if (NULL == (line = (int*)malloc(sizeof(int)*1))) { //check if allocate complketed
+    int* line_1 = NULL;
+    if (NULL == (line = (int*)malloc(sizeof(int)*maximum))) { //check if allocate completed
         printf("Memomry allocation failed\n");
         return NULL;
     }
     char ch;
     int empty_file = 1;
     int counter = 0;
-    int maximum = 1;
     int i = 0;
     for (ch = fgetc(fp); ch != EOF; ch = fgetc(fp)) {
         counter++;
         if (i == maximum - 1){
-            if (NULL == (line = (int*)realloc(line, (maximum++) * sizeof(int)))) {
+            maximum += 2;
+            if (NULL == (line_1 = (int*)realloc(line, (maximum) * sizeof(int)))) {
+                free(line);
                 printf("Memomry allocation failed\n");
                 return NULL;
             }
+            line = line_1;
         }
         if (ch == '\n') {
             line[i] = counter;
@@ -45,7 +42,6 @@ int *end_lines(FILE *fp) {
         printf("Input file is empty\n");
     }
     line[i] = counter;
-    i+=1;
-    line[i] = '\0';
+    line[i + 1] = 20843;
     return line;
 }
