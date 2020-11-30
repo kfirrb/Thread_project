@@ -72,17 +72,17 @@ int main(int argc, char* argv[]){
 }
 
 int check_arguments(int argc, char* argv[], char* mode) {
+    if (argc != 5) {
+        printf("Incorrect number of arguments. %d requird\n", 4);
+        printf("\t%d given\n", argc - 1);
+        return -1;
+    }
     if (!strcmp(argv[4], "-d")) 
         *mode = 'd';
     else if (!strcmp(argv[4], "-e")) 
         *mode = 'e';
     else {
         printf("mode must be -d or -e\n");
-        return -1;
-    }
-    if (argc != 5) {
-        printf("Incorrect number of arguments. %d requird\n", 4);
-        printf("\t%d given\n", argc - 1);
         return -1;
     }
 
