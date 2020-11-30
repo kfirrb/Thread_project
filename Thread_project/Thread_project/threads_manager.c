@@ -18,8 +18,8 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,ch
 	int end, start, i = 0;
 	int num_rows_read;
 	while (threads != 0) {
-		threads_arg = (P_threads_arg)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY,
-			sizeof(threads_arg));
+		threads_arg = (P_threads_arg)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS,
+			5*sizeof(threads_arg));
 		if (threads_arg == NULL)
 			return ERROR_CODE_FILE;
 		num_rows_read = ceil(rows_remain / threads);
@@ -42,8 +42,10 @@ int threads_manager(FILE* read, FILE* write, int* array, int key, int threads,ch
 		threads_arg->mode = mode;
 		threads_arg->start = start;
 		h_th = CreateThread(NULL, 0, handle_thread, threads_arg, 0, &dwThread);
-		if (h_th == NULL)
+		if (h_th == NULL) {
+			free_thread(h_th, threads_arg);
 			return ERROR_CODE_FILE;
+		}
 		wait_until_signal(h_th, threads_arg);
 		threads--;
 		rows_remain -= num_rows_read;
@@ -79,7 +81,7 @@ int counter_line(int* array) {
 }
 
 void wait_until_signal(HANDLE hThread, P_threads_arg threads_arg) {
-	DWORD waitFreeObject = WaitForSingleObject(hThread, 20000);
+	DWORD waitFreeObject = WaitForSingleObject(hThread,20000);
 	free_thread(hThread, threads_arg);
 	if (0 != waitFreeObject) {
 		error_handler(waitFreeObject);

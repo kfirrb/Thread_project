@@ -70,7 +70,10 @@ char* decrypted_line(char* line, int key, char mode) {
     key *= sign;//the mode is now can get into the equations
     for (i = 0; i < strlen(line); i++) {//3 cases
         if (isdigit(line[i]))//interger
-            line[i] = ('0' + (line[i] - '0' - key) % 10);
+            if ((line[i] - '0' - key) < 0) {
+                line[i] += 10;
+                line[i] = ('0' + (line[i] - '0' - key) % 10);
+            }
         if (isalpha(line[i])) {
             if (isupper(line[i])) {//uppper
                 if ((line[i] - 'A' - key) < 0)

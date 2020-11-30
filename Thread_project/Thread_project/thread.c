@@ -24,7 +24,7 @@ int *end_lines(FILE *fp) {
     for (ch = fgetc(fp); ch != EOF; ch = fgetc(fp)) {
         counter++;
         if (i == maximum - 1){
-            maximum += 2;
+            maximum += 3;
             if (NULL == (line_1 = (int*)realloc(line, (maximum) * sizeof(int)))) {
                 free(line);
                 printf("Memomry allocation failed\n");
